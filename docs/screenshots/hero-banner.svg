@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" role="img" aria-labelledby="t d">
+  <title id="t">AI Orchestrator</title>
+  <desc id="d">Run Claude Code, Codex and Antigravity side by side: isolated, verified, observable.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#818cf8"/>
+    </linearGradient>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#334155" stroke-width="0.6" opacity="0.45"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="340" rx="16" fill="url(#bg)"/>
+  <rect width="1200" height="340" rx="16" fill="url(#grid)"/>
+  <rect x="0.5" y="0.5" width="1199" height="339" rx="15.5" fill="none" stroke="#334155"/>
+  <rect x="64" y="64" width="72" height="6" rx="3" fill="url(#accent)"/>
+
+  <!-- Orchestration motif: one hub, three isolated workers -->
+  <g transform="translate(930 70)" fill="none" stroke-linecap="round">
+    <path d="M110 100 L40 40 M110 100 L180 40 M110 100 L110 190" stroke="#475569" stroke-width="2" stroke-dasharray="4 5"/>
+    <circle cx="110" cy="100" r="30" fill="#0f172a" stroke="url(#accent)" stroke-width="3"/>
+    <circle cx="110" cy="100" r="9" fill="url(#accent)" stroke="none"/>
+    <g fill="#0f172a" stroke="#38bdf8" stroke-width="2">
+      <rect x="14" y="14" width="52" height="52" rx="10"/>
+      <rect x="154" y="14" width="52" height="52" rx="10" stroke="#818cf8"/>
+      <rect x="84" y="164" width="52" height="52" rx="10" stroke="#34d399"/>
+    </g>
+    <g stroke="#e2e8f0" stroke-width="2.4" stroke-linejoin="round">
+      <path d="M30 32 L42 40 L30 48"/>
+      <path d="M44 50 H52"/>
+      <path d="M170 32 L182 40 L170 48" />
+      <path d="M184 50 H192"/>
+      <path d="M100 182 L112 190 L100 198"/>
+      <path d="M114 208 H122"/>
+    </g>
+  </g>
+
+  <text x="64" y="132" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="56" font-weight="700" fill="#f8fafc" letter-spacing="-1">AI Orchestrator</text>
+  <text x="64" y="176" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#cbd5e1">Run Claude Code, Codex and Antigravity side by side:</text>
+  <text x="64" y="206" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#cbd5e1">isolated, verified, observable.</text>
+
+  <!-- Technology pills -->
+  <g font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="600" text-anchor="middle">
+    <g transform="translate(64 248)">
+      <rect width="168" height="36" rx="18" fill="#0b2a3f" stroke="#38bdf8" stroke-opacity="0.6"/>
+      <text x="84" y="23" fill="#7dd3fc">Python · FastAPI</text>
+    </g>
+    <g transform="translate(246 248)">
+      <rect width="176" height="36" rx="18" fill="#1b1f4a" stroke="#818cf8" stroke-opacity="0.6"/>
+      <text x="88" y="23" fill="#a5b4fc">React · TypeScript</text>
+    </g>
+    <g transform="translate(436 248)">
+      <rect width="112" height="36" rx="18" fill="#3a1d3f" stroke="#f0abfc" stroke-opacity="0.55"/>
+      <text x="56" y="23" fill="#f5d0fe">PixiJS</text>
+    </g>
+    <g transform="translate(562 248)">
+      <rect width="230" height="36" rx="18" fill="#0f2f2a" stroke="#34d399" stroke-opacity="0.55"/>
+      <text x="115" y="23" fill="#6ee7b7">Windows AppContainer</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,53 @@
+# Bounded-autonomy limits and approval policy. Overridable from the dashboard
+# (stored in the settings table); this file is the default.
+
+limits:
+  max_parallel_workers: 3          # machine has 16 GB RAM; keep conservative
+  max_parallel_per_project: 2
+  max_retry_attempts: 3            # per task, across providers
+  max_repair_cycles: 3             # TESTING -> RUNNING loops
+  max_consecutive_failures: 3
+  max_active_runtime_seconds: 3600 # per run
+  run_heartbeat_timeout_seconds: 300
+  max_consultations_per_task: 2
+  max_leader_calls_per_task: 6
+  quota_recheck_seconds: 300
+  events_max_age_days: 30            # events of finished tasks older than this are pruned (0 = off)
+  events_max_rows: 200000            # newest N events kept (0 = off)
+  ws_replay_max_events: 2000         # WebSocket replay cap per connection
+
+budgets:
+  external_api_spend_usd: 0        # no metered spending without explicit approval
+  allow_billing_classes: [subscription_cli, local]
+
+approvals:
+  required_for:
+    - destructive_file_delete
+    - destructive_git            # reset --hard, force push, branch delete, history rewrite
+    - deployment
+    - purchase
+    - metered_api_activation
+    - sensitive_external_action
+    - untrusted_tool_install
+    - high_privilege_command
+    - git_init_in_project
+    - merge_to_base_branch
+    - unverifiable_completion
+  auto_approve: []               # user may add kinds here from the dashboard
+
+# What workspace_write means depends on the provider (see security/approvals.py::workspace_write_meaning):
+#   claude      file tools only, confined to the task worktree by `--restricted`; no shell, no web tools.
+#   codex       Codex's own `workspace-write` sandbox (Codex decides what it may read).
+#   antigravity agy's own accept-edits mode; shell commands are auto-denied headless (agy decides reads).
+worker_permissions:
+  default: workspace_write
+  plan_review_advise: read_only
+  # YAML-only (a settings/API override is ignored): true adds Bash to Claude workspace_write runs.
+  # A shell is NOT confined to the worktree: it can reach the network and every file this user can.
+  claude_shell: false
+
+security:
+  bind_host: 127.0.0.1
+  port: 8765
+  allowed_origins: ["http://127.0.0.1:8765", "http://localhost:8765"]
+  child_env_allowlist: [PATH, PATHEXT, SYSTEMROOT, SYSTEMDRIVE, WINDIR, COMSPEC, TEMP, TMP, USERPROFILE, HOMEDRIVE, HOMEPATH, APPDATA, LOCALAPPDATA, PROGRAMDATA, PROGRAMFILES, "PROGRAMFILES(X86)", USERNAME, COMPUTERNAME, NUMBER_OF_PROCESSORS, PROCESSOR_ARCHITECTURE, LANG, TERM, CODEX_HOME, CLAUDE_CONFIG_DIR]

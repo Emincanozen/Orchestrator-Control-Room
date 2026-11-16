@@ -1,0 +1,3 @@
+{"type":"system","subtype":"init","model":"claude-haiku-5-5","session_id":"sess-claude-2","tools":[]}
+{"type":"rate_limit_event","rate_limit_info":{"status":"rejected","resetsAt":1794423600,"rateLimitType":"five_hour","unifiedWindows":{"five_hour":{"utilization":1.0,"resetsAt":1794423600}}}}
+{"type":"result","subtype":"success","is_error":true,"result":"Claude AI usage limit reached|1794423600","session_id":"sess-claude-2","total_cost_usd":0,"num_turns":1,"usage":{"input_tokens":0,"output_tokens":0},"api_error_status":429}

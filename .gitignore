@@ -1,0 +1,32 @@
+# runtime data (never commit)
+data/
+*.db
+*.db-wal
+*.db-shm
+*.log
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# node
+node_modules/
+frontend/dist/
+frontend/test-results/
+frontend/playwright-report/
+
+# secrets
+.env
+.env.*
+*.pem
+*.key
+
+# editor / os
+.vscode/
+.idea/
+Thumbs.db
+.claude/settings.local.json

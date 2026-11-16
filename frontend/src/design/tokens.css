@@ -1,0 +1,83 @@
+/*
+ * Design tokens: the single source of truth for colour, type, spacing, radii.
+ * Tailwind v4 turns every --color-*, --font-*, --radius-*, --spacing in @theme
+ * into utilities (bg-panel, text-muted, font-display, rounded-pixel ...).
+ * Direction: "control room" — near-black blue-slate surfaces, phosphor accents,
+ * mono/pixel display type, hard 2px corners that sit next to a pixel-art office.
+ */
+@theme {
+  /* surfaces */
+  --color-void: #07090d;
+  --color-bg: #0a0d12;
+  --color-panel: #10151c;
+  --color-raised: #161d27;
+  --color-sunken: #0c1017;
+  --color-line: #232c38;
+  --color-line-strong: #34414f;
+
+  /* text */
+  --color-ink: #d9e2ec;
+  --color-muted: #8493a5;
+  --color-faint: #5b6878;
+
+  /* brand accents */
+  --color-phosphor: #38e8c6;
+  --color-phosphor-dim: #14705f;
+  --color-amber: #f5b94a;
+  --color-signal: #6aa8ff;
+  --color-danger: #f26d6d;
+  --color-ok: #4ade80;
+
+  /* task state colours (13 states of domain/states.py) */
+  --color-st-created: #8b98a9;
+  --color-st-queued: #6aa8ff;
+  --color-st-planning: #a78bfa;
+  --color-st-running: #38e8c6;
+  --color-st-testing: #f5b94a;
+  --color-st-reviewing: #f472b6;
+  --color-st-waiting-for-quota: #fb923c;
+  --color-st-needs-approval: #facc15;
+  --color-st-paused: #94a3b8;
+  --color-st-blocked: #f87171;
+  --color-st-failed: #ef4444;
+  --color-st-completed: #4ade80;
+  --color-st-cancelled: #64748b;
+
+  /* agent activity colours (AgentActivity) */
+  --color-ag-offline: #4b5563;
+  --color-ag-idle: #8b98a9;
+  --color-ag-planning: #a78bfa;
+  --color-ag-coding: #38e8c6;
+  --color-ag-researching: #22d3ee;
+  --color-ag-testing: #f5b94a;
+  --color-ag-reviewing: #f472b6;
+  --color-ag-consulting: #c084fc;
+  --color-ag-rate-limited: #fb923c;
+  --color-ag-needs-approval: #facc15;
+  --color-ag-blocked: #f87171;
+  --color-ag-celebrating: #4ade80;
+
+  /* chart categorical series (dataviz default palette, dark-surface steps), fixed per provider in tokens.ts */
+  --color-cat-1: #3987e5;
+  --color-cat-2: #d95926;
+  --color-cat-3: #199e70;
+  --color-cat-4: #c98500;
+  --color-cat-5: #d55181;
+  --color-cat-6: #008300;
+  --color-cat-7: #9085e9;
+  --color-cat-8: #e66767;
+  --color-cat-neutral: #8493a5;
+
+  /* typography */
+  --font-display: 'Cascadia Mono', 'JetBrains Mono', 'Consolas', 'Lucida Console', ui-monospace, monospace;
+  --font-sans: 'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Cascadia Mono', 'JetBrains Mono', 'Consolas', ui-monospace, monospace;
+
+  /* radii: hard, pixel-like */
+  --radius-pixel: 2px;
+  --radius-card: 4px;
+
+  /* spacing scale is Tailwind's 4px base; named layout sizes: */
+  --spacing-nav: 15rem;
+  --spacing-topbar: 3rem;
+}

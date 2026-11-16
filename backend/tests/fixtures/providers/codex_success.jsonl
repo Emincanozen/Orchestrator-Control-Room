@@ -1,0 +1,9 @@
+{"type":"thread.started","thread_id":"01a1cb9d-0000-4000-8000-000000000001"}
+{"type":"turn.started"}
+{"type":"item.started","item":{"id":"item_1","type":"command_execution","command":"dir","status":"in_progress"}}
+{"type":"item.completed","item":{"id":"item_1","type":"command_execution","command":"dir","aggregated_output":"","exit_code":0,"status":"completed"}}
+{"type":"item.completed","item":{"id":"item_2","type":"file_change","changes":[{"path":"src/a.py","kind":"update"}],"status":"completed"}}
+{"type":"item.completed","item":{"id":"item_3","type":"reasoning","text":"thinking"}}
+{"type":"mystery.event","x":1}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"CODEX_OK"}}
+{"type":"turn.completed","usage":{"input_tokens":21263,"cached_input_tokens":13696,"cache_write_input_tokens":0,"output_tokens":7,"reasoning_output_tokens":0}}

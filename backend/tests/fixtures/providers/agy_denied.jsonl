@@ -1,0 +1,5 @@
+{"event":"init","conversation_id":"c-denied","init":{"model":"gemini-3.8-flash-low","cwd":"x","tools":[],"permission_mode":"request-review"}}
+{"event":"step_update","step_update":{"conversation_id":"c-denied","step_index":0,"state":"DONE","step_type":"user_input"}}
+{"event":"step_update","step_update":{"conversation_id":"c-denied","step_index":2,"state":"ACTIVE","step_type":"tool","tool_name":"run_command","tool_info":{"name":"run_command","parameters":{"CommandLine":"Get-ChildItem"}}}}
+{"event":"step_update","step_update":{"conversation_id":"c-denied","step_index":2,"state":"DONE","step_type":"tool","tool_name":"run_command","duration_seconds":0.15,"tool_info":{"name":"run_command","parameters":{"CommandLine":"Get-ChildItem"}}}}
+{"event":"result","result":{"conversation_id":"c-denied","status":"SUCCESS","response":"","duration_seconds":2.5,"num_turns":1,"usage":{"input_tokens":9183,"output_tokens":38,"thinking_tokens":0,"cache_read_tokens":0,"total_tokens":9221},"denied_actions":[{"action":"command","display_name":"RunCommand"}]}}

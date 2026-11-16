@@ -1,0 +1,8 @@
+{"type":"system","subtype":"init","model":"claude-haiku-5-5","session_id":"sess-claude-1","tools":["Read","Glob","Grep"]}
+{"type":"assistant","message":{"model":"claude-haiku-5-5","content":[{"type":"thinking","thinking":"hmm"},{"type":"tool_use","id":"t1","name":"Read","input":{"file_path":"src/app.py"}}],"usage":{"input_tokens":2,"output_tokens":5}}}
+{"type":"user","message":{"content":[{"type":"tool_result","tool_use_id":"t1","content":"print('x')"}]}}
+{"type":"assistant","message":{"model":"claude-haiku-5-5","content":[{"type":"tool_use","id":"t2","name":"Bash","input":{"command":"pytest -q"}},{"type":"text","text":"CLAUDE_OK"}],"usage":{"input_tokens":2,"output_tokens":11}}}
+{"type":"rate_limit_event","rate_limit_info":{"status":"allowed","resetsAt":1794423600,"rateLimitType":"five_hour","overageStatus":"rejected","isUsingOverage":false,"unifiedWindows":{"five_hour":{"utilization":0.06,"resetsAt":1794423600}}}}
+{"type":"future_event_kind","payload":{"a":1}}
+this line is not json at all
+{"type":"result","subtype":"success","is_error":false,"result":"CLAUDE_OK","session_id":"sess-claude-1","total_cost_usd":0.00085899,"num_turns":1,"duration_ms":1188,"usage":{"input_tokens":2,"cache_creation_input_tokens":4234,"cache_read_input_tokens":649,"output_tokens":11},"modelUsage":{"claude-haiku-5-5":{"inputTokens":2}},"permission_denials":[],"api_error_status":null}

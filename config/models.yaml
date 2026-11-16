@@ -1,0 +1,82 @@
+# Model registry seed. Facts marked verified were observed on this machine on
+# 2026-11-11 via the CLIs themselves. The runtime registry (provider_models
+# table) is refreshed from the CLIs; this file supplies tiers/capabilities that
+# CLIs do not report. Never add a model here that has not been observed.
+
+providers:
+  claude:
+    cli: claude
+    verified_version: "2.1.322"
+    billing_class: subscription_cli   # claude.ai login, plan tier "pro"
+    discovery: static_aliases         # CLI has no model list command; aliases resolve at run time
+    models:
+      - id: claude-fable-5-2
+        alias: fable
+        tier: frontier
+        verified: true                # current session model
+        notes: Limited promotional availability. Reserve for leadership/critical review.
+      - id: claude-opus-5-5
+        alias: opus
+        tier: advanced
+        verified: listed              # offered by CLI alias; not yet executed by the orchestrator
+      - id: claude-sonnet-5-5
+        alias: sonnet
+        tier: standard
+        verified: listed
+      - id: claude-haiku-5-5
+        alias: haiku
+        tier: fast
+        verified: true                # smoke test returned model=claude-haiku-5-5
+    task_capabilities: [coding, planning, review, research, documentation, animation, image_understanding, screenshot_analysis, ui_implementation]
+
+  codex:
+    cli: codex
+    verified_version: "0.167.1"
+    billing_class: subscription_cli   # "Logged in using ChatGPT"
+    discovery: cli                    # `codex debug models` (visibility "list")
+    # Tiers below are assigned from the one-line descriptions Codex itself
+    # reports (2026-11-12), not from benchmarks.
+    models:
+      - id: gpt-6.1-sol               # "Latest workhorse model for coding and everyday work."
+        tier: advanced
+        verified: true                # configured default; smoke test succeeded with it
+      - {id: gpt-6-astra, tier: frontier, verified: listed}     # "Frontier intelligence for the most demanding work."
+      - {id: gpt-6.1-terra, tier: standard, verified: listed}   # "GPT-6.1 Terra Codex model."
+      - {id: gpt-6-sol, tier: standard, verified: listed}       # "Previous generation workhorse model."
+      - {id: gpt-6-luna, tier: fast, verified: listed}          # "Fast and affordable model for easier tasks."
+      - {id: gpt-5.6-sol, tier: standard, verified: listed}     # "Older generation workhorse model."
+      - {id: gpt-5.6-terra, tier: standard, verified: listed}   # "Older balanced model for straightforward work."
+      - {id: gpt-5.6-luna, tier: fast, verified: true}          # "Older fast and efficient model." Ran the first real pipeline task.
+    task_capabilities: [coding, planning, review, research, documentation, animation, ui_implementation]
+
+  antigravity:
+    cli: agy
+    verified_version: "1.5.5"
+    billing_class: subscription_cli
+    discovery: cli                    # `agy models`
+    models:
+      - {id: gemini-4-argon-high, tier: advanced, verified: listed}
+      - {id: gemini-4-argon-medium, tier: advanced, verified: listed}
+      - {id: gemini-4-argon-low, tier: standard, verified: listed}
+      - {id: gemini-3.8-flash-high, tier: standard, verified: listed}
+      - {id: gemini-3.8-flash-medium, tier: fast, verified: listed}
+      - {id: gemini-3.8-flash-low, tier: fast, verified: true}   # smoke test
+      - {id: claude-opus-5-5-high, tier: advanced, verified: listed}
+      - {id: claude-opus-5-5-medium, tier: advanced, verified: listed}
+      - {id: claude-opus-5-5-low, tier: advanced, verified: listed}
+      - {id: claude-sonnet-5-5-high, tier: standard, verified: listed}
+      - {id: claude-sonnet-5-5-medium, tier: standard, verified: listed}
+      - {id: claude-sonnet-5-5-low, tier: standard, verified: listed}
+      - {id: gpt-oss-120b-medium, tier: standard, verified: listed}
+    # Tool names reported in the agy init event include browser_* and
+    # generate_image. They are *listed*, not yet exercised; the router treats
+    # them as "listed" capabilities until a controlled test passes.
+    task_capabilities: [coding, planning, review, research, documentation, animation, browser_inspection, ui_implementation]
+    listed_unverified_capabilities: [image_generation, screenshot_analysis]
+
+# Capability notes:
+# - "animation" and "ui_implementation" mean implementing them *in code* (e.g.
+#   PixiJS, CSS); that is a coding task every coding-capable CLI can do.
+# - Producing image/video assets (image_generation, image_editing, pixel_art,
+#   visual_design, video_generation) is NOT granted to any provider until a
+#   controlled test of a real tool passes. Such tasks route to "no candidate".

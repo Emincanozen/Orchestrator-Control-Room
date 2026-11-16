@@ -1,0 +1,65 @@
+# Deterministic routing rules. Roles are separate from model identities:
+# rules pick a *tier* and capabilities; the router resolves them to whatever
+# verified provider/model is currently available.
+
+roles:
+  leader:        {tier: frontier, fallback_tiers: [advanced]}
+  advisor:       {tier: advanced, prefer_different_provider_than: leader}
+  core_systems:  {tier: advanced}
+  backend:       {tier: standard}
+  frontend:      {tier: standard, capabilities: [ui_implementation]}
+  pixel_office:  {tier: standard, capabilities: [ui_implementation]}
+  test:          {tier: standard}
+  security:      {tier: advanced}
+  research:      {tier: fast, capabilities: [research]}
+  visual:        {tier: standard}   # required capability comes from the task classification
+
+task_types:
+  planning:       {role: leader}
+  architecture:   {role: leader, min_tier: advanced}
+  coding:         {role: backend}
+  frontend:       {role: frontend}
+  testing:        {role: test}
+  review:         {role: security, min_tier: advanced}
+  research:       {role: research}
+  documentation:  {role: research, tier: fast}
+  visual_asset:   {role: visual, capabilities: [image_generation]}
+  browser_check:  {role: test, capabilities: [browser_inspection]}
+
+complexity_tier_bump:      # complexity -> minimum tier
+  low: fast
+  medium: standard
+  high: advanced
+  critical: frontier
+
+risk:
+  high:
+    min_tier: advanced
+    extra_verification: true     # adds REVIEWING with a different model where possible
+  critical:
+    min_tier: advanced
+    extra_verification: true
+    require_approval: true
+
+scoring:                    # weights for candidates that pass hard filters
+  tier_fit: 40              # exact tier best; over-qualified is penalised (quota waste)
+  user_preference: 25
+  context_continuity: 15    # same provider/session as the previous run of this task
+  usage_headroom: 15
+  historical_success: 5     # only when adaptive evidence threshold is met
+
+adaptive:
+  enabled: true
+  min_samples: 20           # verified runs per (provider, model, task_type) before any adjustment
+  max_adjustment: 10        # score points
+  explain: true
+
+fallback:
+  exclude_failed_candidate: true
+  allow_lower_tier: false   # never downgrade below the rule's minimum tier just to keep going
+  max_provider_switches_per_task: 3
+
+preferences:                # user-editable from the dashboard
+  provider_order: [claude, codex, antigravity]
+  disabled_providers: []
+  disabled_models: []

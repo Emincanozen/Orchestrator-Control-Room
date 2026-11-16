@@ -1,0 +1,1036 @@
+# Skills & MCP catalog seed for AI Orchestrator.
+# Research only: nothing listed here is installed (initial_state CATALOGUED_ON_DEMAND).
+# Conventions:
+#  - maintenance.last_commit = repo pushed_at date from the GitHub API, except for priority
+#    candidates where it is the date of the latest commit fetched via /commits.
+#  - source_url is written only when the repo (and, where stated, the skill path) was fetched
+#    via the GitHub API or WebFetch. Ambiguous names have source_url null and list candidates.
+#  - Stars are repo-level stars from the GitHub API at research time (2026-11-11).
+#  - Unauthenticated GitHub API budget was used; unknown values are recorded as unknown.
+catalog_version: 1
+researched_at: "2026-11-11"
+skills:
+  - id: "day-trader-skill"
+    user_label: "https://github.com/jakeschincariol/day-trader-skill"
+    name: "day-trader-skill"
+    kind: "agent_skill"
+    category: "trading"
+    source_url: "https://github.com/Jakeschincariol/day-trader-skill"
+    source_verified: true
+    uncertainty: "URL given by the user exists (API resolves case-insensitively). Described as 11 skills with an order executor that is paper-trading by default according to third-party listings only. Not a duplicate of the separate Jakeschincariol/trader-skill repo (see trader-skill entry)."
+    candidates: []
+    description: "Eleven Claude skills for day trading: chart scanning, news tracking, entry and exit timing, and replay of past sessions. Third-party listings say one skill can place orders, with paper trading as default."
+    license: "MIT"
+    maintenance: {last_commit: "2026-10-20", stars: 6960, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "partial", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "manual", command: null, notes: "Third-party listings mention a Claude Code plugin marketplace route and copying trader-* folders into .claude/skills. Not verified against the README."}
+    dependencies: ["python (per scripts, unverified)", "broker or market data API keys for live features (unverified)"]
+    permissions: ["network", "filesystem_write", "credentials:broker-api-keys (unverified)"]
+    requires_credentials: true
+    paid_service: "unknown"
+    security: {risk: "high", notes: "Financial tool; one component may submit orders. Review before any use with real money. Executes bundled scripts."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "remotion"
+    user_label: "Remotion"
+    name: "remotion-dev/skills (Remotion agent skills)"
+    kind: "agent_skill"
+    category: "video"
+    source_url: "https://github.com/remotion-dev/skills"
+    source_verified: true
+    uncertainty: "Ambiguous: the user may mean the Remotion library itself (https://github.com/remotion-dev/remotion, license NOASSERTION, 72471 stars, verified via API) rather than the agent skill pack. The skill pack was chosen because it is the agent-facing item. Install command comes from third-party listings and the Remotion docs as quoted by them; not re-verified on the docs site."
+    candidates: ["https://github.com/remotion-dev/remotion"]
+    description: "Official Remotion agent skills (best practices for creating videos programmatically with React). The library itself is a React framework for programmatic video."
+    license: "unknown"
+    maintenance: {last_commit: "2026-11-11", stars: 6848, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "skills_cli", command: "npx skills add remotion-dev/skills", notes: "Third-party listings quote adding -a claude-code. On this machine use: npx.cmd -y skills add remotion-dev/skills --agent claude-code -g -y --copy. The repo-level license field is null in the API."}
+    dependencies: ["node>=18 (for the Remotion library, unverified)", "ffmpeg and headless Chromium for rendering (general Remotion requirement, unverified here)"]
+    permissions: ["filesystem_write"]
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "low", notes: "Skill files are instructions and examples. The library, when used, runs local Node code and renders via headless browser."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "omniroute"
+    user_label: "omniroute"
+    name: "OmniRoute"
+    kind: "dev_tool"
+    category: "development"
+    source_url: "https://github.com/cheaper-inference/OmniRoute"
+    source_verified: true
+    uncertainty: "The URL diegosouzapw/OmniRoute, found in search results, redirects to cheaper-inference/OmniRoute (verified via API). Star counts quoted by third-party sites vary widely (11k to 86k). Several unrelated forks named OmniRoute exist."
+    candidates: ["https://github.com/diegosouzapw/OmniRoute"]
+    description: "Self-hosted MIT AI gateway that gives coding tools one local endpoint in front of many model providers. It offers a Claude Code setup helper and an MCP interface according to its README summaries."
+    license: "MIT"
+    maintenance: {last_commit: "2026-11-11", stars: 86527, archived: false}
+    default_branch: "release/v3.8.54"
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "unknown", mcp: "yes"}
+    install_method: {type: "manual", command: null, notes: "Third-party guides mention omniroute setup-claude-code and omniroute launch. Exact install command not verified against the README."}
+    dependencies: ["node (unverified)", "provider API keys"]
+    permissions: ["network", "filesystem_write", "credentials:provider-api-keys"]
+    requires_credentials: true
+    paid_service: "freemium"
+    security: {risk: "medium", notes: "Sits between the agent and model providers, so it sees prompts and holds provider keys. Self-host and review before use."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "obsidian"
+    user_label: "obsidian"
+    name: "obsidian-skills"
+    kind: "agent_skill"
+    category: "knowledge"
+    source_url: "https://github.com/obsidianmd/obsidian-skills"
+    source_verified: true
+    uncertainty: "The user's name points to kepano/obsidian-skills, which redirects to obsidianmd/obsidian-skills (verified via API, the repo was moved). The repo is described by third-party listings as maintained by Steph Ango (kepano), which was not verified on the repo page."
+    candidates: ["https://github.com/kepano/obsidian-skills"]
+    description: "Agent skills that teach an agent the Obsidian CLI, Obsidian Markdown, Bases and JSON Canvas formats so it can edit vault notes correctly."
+    license: "MIT"
+    maintenance: {last_commit: "2026-11-11", stars: 51675, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "claude_plugin", command: "/plugin marketplace add kepano/obsidian-skills", notes: "Plugin route quoted by third-party listings; the repo now lives under obsidianmd, so the marketplace add command may need obsidianmd/obsidian-skills (GitHub redirects apply). Alternative: npx skills add obsidianmd/obsidian-skills. Not verified."}
+    dependencies: ["Obsidian (for the CLI skill)"]
+    permissions: ["filesystem_write (vault)"]
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "low", notes: "Instruction files only. Editing happens through the agent with vault write access."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "task-observer"
+    user_label: "task observer"
+    name: "task-observer (one-skill-to-rule-them-all)"
+    kind: "agent_skill"
+    category: "meta"
+    source_url: "https://github.com/rebelytics/one-skill-to-rule-them-all"
+    source_verified: true
+    uncertainty: "Repo verified via API. The task-observer skill is one of several skills in that repo. Star counts quoted elsewhere (500 to 3600) are older snapshots. License CC-BY-4.0 is a content license, not a code license, as stated in the repo."
+    candidates: []
+    description: "Meta-skill that logs friction, corrections and repeated mistakes during Claude Code sessions and proposes improvements to other skills, with a human review gate."
+    license: "CC-BY-4.0"
+    maintenance: {last_commit: "2026-11-09", stars: 3854, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "skills_cli", command: "npx skills add rebelytics/one-skill-to-rule-them-all --skill task-observer", notes: "Command quoted by third-party listings; on this machine use the -g --copy --agent claude-code form. Not verified against the README."}
+    dependencies: []
+    permissions: ["filesystem_write (session logs)"]
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "low", notes: "Reads session context and writes proposals to files. Review any CLAUDE.md change it suggests."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "content-research-writer"
+    user_label: "content research writer"
+    name: "content-research-writer"
+    kind: "agent_skill"
+    category: "writing"
+    source_url: "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/content-research-writer"
+    source_verified: true
+    uncertainty: "Path verified via GitHub contents API (HTTP 200). Several forks and registry mirrors exist (MoizIbnYousaf/Ai-Agent-Skills, majiayu000/claude-skill-registry, pedronauck/skills, aAAaqwq/AGI-Super-Team). The Composio awesome-list copy is the most-cited origin. Stars shown are for the awesome list, not the skill."
+    candidates: ["https://github.com/MoizIbnYousaf/Ai-Agent-Skills", "https://github.com/majiayu000/claude-skill-registry", "https://github.com/pedronauck/skills"]
+    description: "Writing assistant skill for long-form content: outlining, sourcing and citations, hook improvement and section feedback."
+    license: "unknown"
+    maintenance: {last_commit: "2026-09-18", stars: 79265, archived: false}
+    default_branch: "master"
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "skills_cli", command: "npx skills add https://github.com/ComposioHQ/awesome-claude-skills --skill content-research-writer", notes: "Command quoted by a third-party listing. Repo-level license is null in the API, so check the skill folder before use."}
+    dependencies: []
+    permissions: ["network (if the skill fetches sources, unverified)"]
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "low", notes: "Instruction-only writing skill according to listings. Source fetching depends on the agent's web tools."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "voice-dna"
+    user_label: "voice DNA"
+    name: "voice-dna-creator (ambiguous)"
+    kind: "agent_skill"
+    category: "writing"
+    source_url: null
+    source_verified: false
+    uncertainty: "Ambiguous: several repos build a Voice DNA profile from writing samples and no single canonical source was confirmed. The az9713/ai-co-writing-claude-skills repo (verified exists, 68 stars, last push 2025-12-12, license null) is one likely candidate, but the skill folder was not confirmed in the repo."
+    candidates: ["https://github.com/az9713/ai-co-writing-claude-skills", "https://github.com/robertguss/claude-code-toolkit", "https://github.com/brianrwagner/ai-marketing-claude-code-skills"]
+    description: "Skill that builds a voice profile (a Voice DNA document) from the user's own writing samples so drafts match their style."
+    license: "unknown"
+    maintenance: {last_commit: "unknown", stars: "unknown", archived: "unknown"}
+    default_branch: null
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "manual", command: null, notes: "Choose the source first; install method depends on the chosen repo."}
+    dependencies: []
+    permissions: ["filesystem_read (writing samples)"]
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "low", notes: "Reads the user's writing samples. Not verified."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "headroom"
+    user_label: "headroom"
+    name: "Headroom"
+    kind: "dev_tool"
+    category: "development"
+    source_url: "https://github.com/headroomlabs-ai/headroom"
+    source_verified: true
+    uncertainty: "The user's chopratejas/headroom redirects to headroomlabs-ai/headroom (verified via API). Install and Claude Code integration not verified against the README."
+    candidates: ["https://github.com/chopratejas/headroom"]
+    description: "Compresses tool outputs, logs, files and RAG chunks before they reach the LLM to reduce token use for coding agents."
+    license: "Apache-2.0"
+    maintenance: {last_commit: "2026-11-11", stars: 79362, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "partial", codex: "unknown", mcp: "unknown"}
+    install_method: {type: "manual", command: null, notes: "Install command not verified; README not fetched in this run."}
+    dependencies: ["python (unverified)"]
+    permissions: ["network", "filesystem_read"]
+    requires_credentials: true
+    paid_service: "no"
+    security: {risk: "medium", notes: "Inline in the path between the agent and the LLM, so it can see and alter every compressed payload. Review before routing sensitive data through it."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "agentation"
+    user_label: "agentation"
+    name: "Agentation"
+    kind: "dev_tool"
+    category: "design"
+    source_url: "https://github.com/benjitaylor/agentation"
+    source_verified: true
+    uncertainty: "Repo verified via API (5387 stars, license NOASSERTION so recorded as unknown). Third-party listings report the agentation skill installs via npx skills add benjitaylor/agentation --skill agentation. A second skill, agentation-self-driving, exists per listings. A security scan on a listing flagged an npx-run MCP package and a prompt-injection concern in the watch-loop workflow."
+    candidates: []
+    description: "Visual feedback toolbar for React apps that lets a developer annotate UI elements and hand structured feedback to coding agents."
+    license: "unknown"
+    maintenance: {last_commit: "2026-09-22", stars: 5387, archived: false}
+    default_branch: "main"
+    pinned_ref: "0e3236eb1a0f5577852ab7bb5121f5dd46d42f1d"
+    compat: {claude_code: "yes", codex: "unknown", mcp: "yes"}
+    install_method: {type: "skills_cli", command: "npx skills add benjitaylor/agentation --skill agentation", notes: "Command from third-party listings. Toolbar itself is a development-only React component."}
+    dependencies: ["node", "React app (Next.js example in listings)"]
+    permissions: ["network (npx packages)", "filesystem_write (dev only)"]
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "medium", notes: "Runs an agentation-mcp package via npx and feeds UI annotations back into the agent. Treat annotation text as untrusted input (prompt-injection risk)."}
+    priority_candidate: true
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "agent-skills"
+    user_label: "agent skills"
+    name: "agent skills (ambiguous)"
+    kind: "collection"
+    category: "meta"
+    source_url: null
+    source_verified: false
+    uncertainty: "Ambiguous: the name could be the Vercel collection, the Agent Skills specification repo, or a generic awesome list. Candidates were verified to exist via API but none is confirmed as the intended one."
+    candidates: ["https://github.com/vercel-labs/agent-skills", "https://github.com/agentskills/agentskills"]
+    description: "Generic name for agent skill collections or the Agent Skills specification; the intended target is unclear."
+    license: "unknown"
+    maintenance: {last_commit: "unknown", stars: "unknown", archived: "unknown"}
+    default_branch: null
+    pinned_ref: null
+    compat: {claude_code: "unknown", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "none", command: null, notes: "Clarify with the user which repo is meant."}
+    dependencies: []
+    permissions: []
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "unknown", notes: "Depends on the chosen repo."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "context7"
+    user_label: "Context7"
+    name: "Context7"
+    kind: "mcp_server"
+    category: "development"
+    source_url: "https://github.com/upstash/context7"
+    source_verified: true
+    uncertainty: "Repo verified via API; latest commit fetched. README (WebFetch) gives the setup via npx ctx7 setup and a remote MCP URL with an optional API key. Exact Claude Code command was not quoted verbatim."
+    candidates: []
+    description: "MCP server (Upstash) that supplies up-to-date, version-specific library documentation to coding agents."
+    license: "MIT"
+    maintenance: {last_commit: "2026-11-11", stars: 64613, archived: false}
+    default_branch: "master"
+    pinned_ref: "681554c5d3a688c67879d02d4f01d79ffd15df13"
+    compat: {claude_code: "yes", codex: "yes", mcp: "yes"}
+    install_method: {type: "mcp_npx", command: "npx ctx7 setup --claude", notes: "Setup command quoted from the README via WebFetch. Remote MCP URL is https://mcp.context7.com/mcp with an optional Authorization Bearer key. Use the README's own command when installing."}
+    dependencies: ["node>=18 (npx)"]
+    permissions: ["network"]
+    requires_credentials: false
+    paid_service: "freemium"
+    security: {risk: "low", notes: "Sends library queries to a remote service. An API key raises rate limits. Documentation text is returned into the model context."}
+    priority_candidate: true
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "graphify"
+    user_label: "Graphify"
+    name: "Graphify"
+    kind: "dev_tool"
+    category: "knowledge"
+    source_url: "https://github.com/Graphify-Labs/graphify"
+    source_verified: true
+    uncertainty: "The user-visible name maps to safishamsi/graphify, which redirects to Graphify-Labs/graphify (verified). Third-party listings say MIT, the API says Apache-2.0; API value used. Install via pip (graphifyy on PyPI) per listings, not verified against the README."
+    candidates: ["https://github.com/safishamsi/graphify"]
+    description: "Turns a codebase with its docs, configs and PDFs into a queryable knowledge graph, exposed to Claude Code through a /graphify skill and a PreToolUse hook."
+    license: "Apache-2.0"
+    maintenance: {last_commit: "2026-11-10", stars: 146048, archived: false}
+    default_branch: "v8"
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "manual", command: "pip install graphifyy && graphify install", notes: "Setup from third-party listings (PyPI package name graphifyy, CLI graphify). Also 'graphify claude install' per listings. Not verified."}
+    dependencies: ["python>=3.10"]
+    permissions: ["filesystem_read (whole project)", "filesystem_write", "hook:PreToolUse"]
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "medium", notes: "Reads the entire project and writes a graph store. Installs a PreToolUse hook that runs before Glob and Grep calls. Review the hook before enabling."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "21st-mcp"
+    user_label: "21st MCP"
+    name: "21st Magic MCP (magic-mcp)"
+    kind: "mcp_server"
+    category: "design"
+    source_url: "https://github.com/21st-dev/magic-mcp"
+    source_verified: true
+    uncertainty: "Repo verified via API (last push 2026-09-09, the oldest of the MCP entries). README (WebFetch) gives npx @21st-dev/cli@latest init --client claude and a plugin route claude plugin marketplace add 21st-dev/magic-mcp. The 21st.dev API key requirement is confirmed by the README."
+    candidates: []
+    description: "MCP server that searches a catalogue of React and Tailwind UI components and generates components from a prompt inside Claude Code and other editors."
+    license: "ISC"
+    maintenance: {last_commit: "2026-09-09", stars: 6459, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "yes", mcp: "yes"}
+    install_method: {type: "mcp_npx", command: "npx @21st-dev/cli@latest init --client claude", notes: "Command from README via WebFetch. Requires an API key from 21st.dev (x-api-key header or API_KEY_21ST for the plugin)."}
+    dependencies: ["node", "21st.dev API key"]
+    permissions: ["network", "credentials:21st-api-key"]
+    requires_credentials: true
+    paid_service: "freemium"
+    security: {risk: "medium", notes: "Pulls third-party component code from a remote catalogue into the project. Review generated code before use."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "strix"
+    user_label: "Strix"
+    name: "Strix"
+    kind: "dev_tool"
+    category: "security"
+    source_url: "https://github.com/usestrix/strix"
+    source_verified: true
+    uncertainty: "Repo verified via API. Install method and the LLM provider requirements were not verified against the README."
+    candidates: []
+    description: "Open-source AI penetration-testing tool that probes an application for vulnerabilities and suggests fixes."
+    license: "Apache-2.0"
+    maintenance: {last_commit: "2026-11-11", stars: 74990, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "unknown", codex: "unknown", mcp: "unknown"}
+    install_method: {type: "manual", command: null, notes: "Not verified."}
+    dependencies: ["docker (likely, unverified)", "python (unverified)", "LLM provider API key"]
+    permissions: ["network (active scanning of targets)", "filesystem_write", "credentials:llm-api-key"]
+    requires_credentials: true
+    paid_service: "unknown"
+    security: {risk: "high", notes: "Actively attacks target applications. Only run against systems you own or are authorised to test. Sends target data to an LLM provider."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "trader-skill"
+    user_label: "trader skill"
+    name: "trader-skill"
+    kind: "agent_skill"
+    category: "trading"
+    source_url: "https://github.com/Jakeschincariol/trader-skill"
+    source_verified: true
+    uncertainty: "Repo verified via API. Third-party listings describe day-trader-skill as the sequel ('v2') of this repo, so they are related but not duplicates. Description from the repo: copy trusted investors, watch news and Congress, size trades to a budget."
+    candidates: []
+    description: "Eleven Claude skills that copy trades from investors the user trusts, watch news and Congress trades, and size each trade to a budget."
+    license: "MIT"
+    maintenance: {last_commit: "2026-10-14", stars: 1679, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "partial", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "manual", command: null, notes: "Not verified."}
+    dependencies: ["brokerage or market data API (unverified)"]
+    permissions: ["network", "credentials:broker-api-keys (unverified)"]
+    requires_credentials: true
+    paid_service: "unknown"
+    security: {risk: "high", notes: "Financial tool that may place trades. Review every order path before running with real credentials."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "skill-time-machine"
+    user_label: "skill time machine"
+    name: "skill time machine (ambiguous)"
+    kind: "agent_skill"
+    category: "meta"
+    source_url: null
+    source_verified: false
+    uncertainty: "No skill with this exact name was found. Closest matches are skill-snapshot tools (versioning and rollback for Claude skills) and a parametric-scribe replay skill. None confirmed as the intended one."
+    candidates: ["https://agent-skills.cc/skills/wshuyi-skill-snapshot-skill", "https://agent-skills.cc/skills/gongyuhang2023-cpu-skill-snapshot", "https://github.com/aiskillstore/marketplace"]
+    description: "Requested as a time machine for skills (versioning, rollback or replay). The exact target was not found."
+    license: "unknown"
+    maintenance: {last_commit: "unknown", stars: "unknown", archived: "unknown"}
+    default_branch: null
+    pinned_ref: null
+    compat: {claude_code: "unknown", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "none", command: null, notes: "Ask the user which candidate is meant."}
+    dependencies: []
+    permissions: []
+    requires_credentials: false
+    paid_service: "unknown"
+    security: {risk: "unknown", notes: "Not assessed."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "replica-skill"
+    user_label: "replica skill"
+    name: "replica-skill"
+    kind: "agent_skill"
+    category: "development"
+    source_url: "https://github.com/Jakeschincariol/replica-skill"
+    source_verified: true
+    uncertainty: "Repo verified via API (8918 stars, last push 2026-10-03). Third-party listings describe a clean-room clone workflow; this was not checked in the repo. Star counts quoted elsewhere (5688) are older."
+    candidates: []
+    description: "Eleven Claude skills to reverse-engineer an existing app, rebuild a clone of it, test it and deploy it."
+    license: "MIT"
+    maintenance: {last_commit: "2026-10-03", stars: 8918, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "partial", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "manual", command: null, notes: "Installable as a plugin or by copying skill folders per listings. Not verified."}
+    dependencies: ["node (unverified)"]
+    permissions: ["network", "filesystem_write", "browser_control (testing, unverified)"]
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "medium", notes: "Reverse-engineering and cloning apps raises copyright and terms-of-service issues. Review legal scope before use."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "automaton"
+    user_label: "Automaton"
+    name: "Automaton (not found)"
+    kind: "agent_skill"
+    category: "meta"
+    source_url: null
+    source_verified: false
+    uncertainty: "No Claude Code skill or repo named Automaton was found. Nearby autonomous-loop skills exist (for example jakozloski/autonomy, which is not a name match). The user should give a repo URL."
+    candidates: ["https://github.com/jakozloski/autonomy"]
+    description: "Requested autonomous agent skill; the intended target was not identified."
+    license: "unknown"
+    maintenance: {last_commit: "unknown", stars: "unknown", archived: "unknown"}
+    default_branch: null
+    pinned_ref: null
+    compat: {claude_code: "unknown", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "none", command: null, notes: "Needs a repo URL from the user."}
+    dependencies: []
+    permissions: []
+    requires_credentials: false
+    paid_service: "unknown"
+    security: {risk: "unknown", notes: "Autonomous execution skills should be scoped and reviewed before use."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "humanizer"
+    user_label: "Humanizer"
+    name: "Humanizer"
+    kind: "agent_skill"
+    category: "writing"
+    source_url: "https://github.com/blader/humanizer"
+    source_verified: true
+    uncertainty: "Repo verified via API. Install command not verified against the README."
+    candidates: []
+    description: "Agent skill that removes common signs of AI-generated writing from a text."
+    license: "MIT"
+    maintenance: {last_commit: "2026-11-10", stars: 67898, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "manual", command: null, notes: "Copy the skill folder into the skills directory. Exact command not verified."}
+    dependencies: []
+    permissions: []
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "low", notes: "Instruction-only rewriting skill."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "hyperframes"
+    user_label: "Hyperframes"
+    name: "Hyperframes"
+    kind: "dev_tool"
+    category: "video"
+    source_url: "https://github.com/heygen-com/hyperframes"
+    source_verified: true
+    uncertainty: "Repo verified via API. Third-party listings report about 34 skills installed via npx skills add heygen-com/hyperframes. Not verified against the README."
+    candidates: []
+    description: "Framework for writing HTML compositions and rendering them to video, designed for agents, with a set of Claude Code skills."
+    license: "Apache-2.0"
+    maintenance: {last_commit: "2026-11-11", stars: 82760, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "skills_cli", command: "npx skills add heygen-com/hyperframes", notes: "Command from third-party listings. Individual skills can be selected with --skill."}
+    dependencies: ["node (unverified)", "ffmpeg and headless Chromium for rendering (unverified)"]
+    permissions: ["filesystem_write", "browser_control (render)"]
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "medium", notes: "Renders HTML through a headless browser and runs local build tooling."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "claude-video"
+    user_label: "bradautomates/claude-video / watch"
+    name: "claude-video (/watch)"
+    kind: "agent_skill"
+    category: "video"
+    source_url: "https://github.com/bradautomates/claude-video"
+    source_verified: true
+    uncertainty: "Repo verified via API. The /watch command is the skill's entry point. Dependencies (yt-dlp, ffmpeg, transcription service) were not verified against the README."
+    candidates: []
+    description: "Gives Claude the ability to watch a video: /watch downloads it, extracts frames, transcribes it and passes the material to Claude."
+    license: "MIT"
+    maintenance: {last_commit: "2026-09-25", stars: 20528, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "manual", command: null, notes: "Install command not verified."}
+    dependencies: ["yt-dlp (unverified)", "ffmpeg (unverified)", "transcription API key (unverified)"]
+    permissions: ["network (downloads arbitrary URLs)", "filesystem_write (temporary frames)", "credentials:transcription-api-key (unverified)"]
+    requires_credentials: true
+    paid_service: "unknown"
+    security: {risk: "medium", notes: "Downloads remote video and processes it with local tools. Frames and transcripts may go to a third-party transcription service."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "morluto-rea"
+    user_label: "morluto/REA"
+    name: "REA (morluto/rea)"
+    kind: "dev_tool"
+    category: "security"
+    source_url: "https://github.com/morluto/REA"
+    source_verified: true
+    uncertainty: "Repo verified via API (full name morluto/rea). The star count (452208) is unusually high for this kind of repo; treat it as unverified."
+    candidates: []
+    description: "Agent-driven reverse engineering across app behaviour down to native binaries."
+    license: "MIT"
+    maintenance: {last_commit: "2026-11-11", stars: 452208, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "unknown", codex: "unknown", mcp: "unknown"}
+    install_method: {type: "manual", command: null, notes: "Not verified."}
+    dependencies: ["unknown (native tooling likely)"]
+    permissions: ["filesystem_read (binaries)", "process_exec", "network (unverified)"]
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "high", notes: "Disassembles and analyses binaries and drives tools on the host. Run isolated (VM or container) and only on software you are allowed to analyse."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "apify-mcp-server"
+    user_label: "apify-mcp-server"
+    name: "Apify MCP server"
+    kind: "mcp_server"
+    category: "research"
+    source_url: "https://github.com/apify/apify-mcp-server"
+    source_verified: true
+    uncertainty: "Repo verified via API. Exact install command (hosted endpoint or npx package) not verified against the README."
+    candidates: []
+    description: "MCP server that lets agents run Apify Actors to extract data from social media, search engines, maps and e-commerce sites."
+    license: "MIT"
+    maintenance: {last_commit: "2026-11-11", stars: 15741, archived: false}
+    default_branch: "master"
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "unknown", mcp: "yes"}
+    install_method: {type: "mcp_http", command: null, notes: "Not verified. Hosted MCP and npx options are likely; check the README."}
+    dependencies: ["Apify API token"]
+    permissions: ["network", "credentials:apify-token"]
+    requires_credentials: true
+    paid_service: "freemium"
+    security: {risk: "medium", notes: "Runs third-party scrapers (Actors) on Apify infrastructure with the user's account. Scraped data may carry prompt-injection content."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "find-skills"
+    user_label: "find skills"
+    name: "find-skills"
+    kind: "agent_skill"
+    category: "meta"
+    source_url: "https://github.com/vercel-labs/skills/tree/main/skills/find-skills"
+    source_verified: true
+    uncertainty: "Path verified via GitHub contents API (HTTP 200). This skill is already installed globally on this machine (the user has find-skills in ~/.claude/skills). Repo is the skills.sh CLI repo."
+    candidates: []
+    description: "Helps find and install agent skills when the user asks how to do a task or whether a skill exists for it."
+    license: "MIT"
+    maintenance: {last_commit: "2026-11-10", stars: 38978, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "skills_cli", command: "npx skills add vercel-labs/skills --skill find-skills", notes: "Already installed on this machine; the CLI form needs npx.cmd on PowerShell and --copy on Windows."}
+    dependencies: ["node>=22.20 for the skills CLI (EBADENGINE warnings on node 22.14)"]
+    permissions: ["network"]
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "low", notes: "Searches the skills.sh registry; installing other skills is the risky step, which should be reviewed."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "orca"
+    user_label: "orca"
+    name: "Orca (stablyai/orca)"
+    kind: "standalone_app"
+    category: "development"
+    source_url: "https://github.com/stablyai/orca"
+    source_verified: true
+    uncertainty: "Repo verified via API. The orchestration skill install command comes from third-party listings and was not verified. Star counts quoted elsewhere range widely (30k to 108k); API value used."
+    candidates: []
+    description: "Desktop app for running a fleet of coding agents (for example Claude Code and Codex) in parallel, with a Claude Code skill for agent-to-agent orchestration."
+    license: "MIT"
+    maintenance: {last_commit: "2026-11-11", stars: 122204, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "yes", mcp: "unknown"}
+    install_method: {type: "skills_cli", command: "npx skills add stablyai/orca --skill orchestration", notes: "Command from third-party listings. The app itself is a separate install."}
+    dependencies: ["Orca desktop app", "git (worktrees)"]
+    permissions: ["process_exec", "filesystem_write", "network"]
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "medium", notes: "Launches coding agents with local shell access across worktrees. Review agent permission settings."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "playwright-mcp"
+    user_label: "microsoft/playwright-mcp"
+    name: "Playwright MCP"
+    kind: "mcp_server"
+    category: "testing"
+    source_url: "https://github.com/microsoft/playwright-mcp"
+    source_verified: true
+    uncertainty: "Repo verified via API; latest commit fetched. Claude Code command quoted verbatim from the README via WebFetch."
+    candidates: []
+    description: "Official Microsoft MCP server that gives agents browser automation through Playwright (navigate, click, type, snapshot and screenshot)."
+    license: "Apache-2.0"
+    maintenance: {last_commit: "2026-11-11", stars: 39505, archived: false}
+    default_branch: "main"
+    pinned_ref: "78eca85361efb545a4c0f59b6140aef0721c5412"
+    compat: {claude_code: "yes", codex: "yes", mcp: "yes"}
+    install_method: {type: "mcp_npx", command: "claude mcp add playwright npx @playwright/mcp@latest", notes: "Command quoted from README via WebFetch. Pin a version in production use."}
+    dependencies: ["node>=18", "a Playwright-supported browser"]
+    permissions: ["browser_control", "network", "filesystem_write (screenshots and output)"]
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "medium", notes: "Controls a real browser that can reach any site and any logged-in session in its profile. Restrict target domains and avoid logged-in profiles for untrusted pages."}
+    priority_candidate: true
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "chief-of-staff"
+    user_label: "chief of staff"
+    name: "chief-of-staff (ambiguous)"
+    kind: "agent_skill"
+    category: "productivity"
+    source_url: null
+    source_verified: false
+    uncertainty: "Ambiguous: several 'chief of staff' skills exist (alirezarezvani, hartreeworks, jimmysadek, Ability.ai, ComeOnOliver). The alirezarezvani/claude-skills repo exists (verified, MIT, 29643 stars), but the chief-of-staff folder path returned HTTP 404 on the guessed path and was not located."
+    candidates: ["https://github.com/alirezarezvani/claude-skills", "https://skills.sh/hartreeworks/skill--chief-of-staff/chief-of-staff", "https://github.com/jimmysadek/strategic-partner"]
+    description: "Chief-of-staff style skills that route executive questions or produce daily briefings. The intended target is not confirmed."
+    license: "unknown"
+    maintenance: {last_commit: "unknown", stars: "unknown", archived: "unknown"}
+    default_branch: null
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "none", command: null, notes: "Choose a candidate first."}
+    dependencies: []
+    permissions: []
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "unknown", notes: "Not assessed per candidate."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "anatomy"
+    user_label: "anatomy"
+    name: "anatomy"
+    kind: "agent_skill"
+    category: "design"
+    source_url: "https://github.com/wheresryan22/anatomy"
+    source_verified: true
+    uncertainty: "Repo verified via API. It explains concepts and machines as interactive isometric illustrations, not codebases. Install command from a third-party listing, not verified."
+    candidates: []
+    description: "Agent skill that turns a technical concept or real-world machine into a detailed, interactive isometric illustration."
+    license: "MIT"
+    maintenance: {last_commit: "2026-10-18", stars: 26701, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "skills_cli", command: "npx skills add wheresryan22/anatomy", notes: "Command from a third-party listing (-g -a claude-code form). Not verified."}
+    dependencies: []
+    permissions: ["filesystem_write (generated files)"]
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "low", notes: "Generates HTML or SVG illustrations."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "teach"
+    user_label: "teach"
+    name: "teach (ambiguous)"
+    kind: "agent_skill"
+    category: "knowledge"
+    source_url: null
+    source_verified: false
+    uncertainty: "Ambiguous: the generic name matches several skills. entireio/skills/skills/teach exists (path verified via API, MIT, 240 stars) and handles 'teach me this repo' prompts, but other codebase-teaching skills also exist. Not confirmed as the intended one."
+    candidates: ["https://github.com/entireio/skills", "https://github.com/zarazhangrui/codebase-to-course", "https://github.com/fearovex/claude-config"]
+    description: "Skill that teaches a topic or codebase in a logical order; the intended target was not confirmed."
+    license: "unknown"
+    maintenance: {last_commit: "unknown", stars: "unknown", archived: "unknown"}
+    default_branch: null
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "none", command: null, notes: "Ask the user which candidate is meant."}
+    dependencies: []
+    permissions: []
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "low", notes: "Instruction-only skills according to listings; not verified."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "marketing-psychology"
+    user_label: "marketing psychology"
+    name: "marketing-psychology"
+    kind: "agent_skill"
+    category: "marketing"
+    source_url: "https://github.com/coreyhaines31/marketingskills/tree/main/skills/marketing-psychology"
+    source_verified: true
+    uncertainty: "Path verified via GitHub contents API. Several forks and mirrors exist (alirezarezvani/claude-skills, popey/claude-code-skills, fradser/dotclaude, sickn33/agentic-awesome-skills). The coreyhaines31 repo is the most-cited origin."
+    candidates: ["https://github.com/alirezarezvani/claude-skills", "https://github.com/popey/claude-code-skills"]
+    description: "Explains and applies marketing psychology models to copy, landing pages and campaigns, reading an existing product-marketing context file when present."
+    license: "MIT"
+    maintenance: {last_commit: "2026-11-11", stars: 59736, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "skills_cli", command: "npx skills add coreyhaines31/marketingskills --skill marketing-psychology", notes: "Command from third-party listings. Repo is a marketing skills bundle."}
+    dependencies: []
+    permissions: []
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "low", notes: "Instruction-only skill."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "last-30-days"
+    user_label: "last 30 days"
+    name: "last30days-skill"
+    kind: "agent_skill"
+    category: "research"
+    source_url: "https://github.com/mvanhorn/last30days-skill"
+    source_verified: true
+    uncertainty: "Repo verified via API. A mirror at minicarlo/last30days-skill also appeared in results. Source list and API requirements come from third-party listings (OpenAI and xAI keys for some sources), not verified in the README."
+    candidates: ["https://github.com/minicarlo/last30days-skill"]
+    description: "Research skill that searches recent discussions across Reddit, X, YouTube, Hacker News and other sources for the last 30 days, then writes prompts from the findings."
+    license: "MIT"
+    maintenance: {last_commit: "2026-11-11", stars: 67321, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "claude_plugin", command: "/plugin marketplace add mvanhorn/last30days-skill", notes: "Plugin route quoted by third-party listings. A manual clone is also documented per listings."}
+    dependencies: ["OpenAI API key and xAI API key for some sources (per listings)"]
+    permissions: ["network", "credentials:openai-api-key", "credentials:xai-api-key"]
+    requires_credentials: true
+    paid_service: "yes"
+    security: {risk: "medium", notes: "Sends search topics to external metered APIs. Scraped third-party content is returned into the model context (prompt-injection exposure)."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "mirofish"
+    user_label: "mirofish"
+    name: "MiroFish"
+    kind: "standalone_app"
+    category: "research"
+    source_url: "https://github.com/666ghj/MiroFish"
+    source_verified: true
+    uncertainty: "Canonical engine repo verified via API. Several community Claude skills named MiroFish exist (for example 666ghj skill listings, MOZARTINOS/mirofish-guide, aradotso/trending-skills); one listing flagged a related skill via Snyk and an unfamiliar domain. The archived status conflicts between sources (API: not archived)."
+    candidates: ["https://github.com/MOZARTINOS/mirofish-guide", "https://github.com/aradotso/trending-skills"]
+    description: "Python swarm-intelligence simulation engine that builds a simulated world from seed material and produces a prediction report. It uses OASIS for agent simulation and Zep for memory."
+    license: "AGPL-3.0"
+    maintenance: {last_commit: "2026-10-16", stars: 85304, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "unknown", codex: "unknown", mcp: "no"}
+    install_method: {type: "manual", command: null, notes: "Full app install (Node 18+, Python 3.11 to 3.12) per third-party summary; not verified."}
+    dependencies: ["python 3.11 to 3.12", "node>=18", "LLM API key (OpenAI-compatible)", "Zep Cloud (per summary)"]
+    permissions: ["network", "filesystem_write", "credentials:llm-api-key", "credentials:zep-api-key"]
+    requires_credentials: true
+    paid_service: "unknown"
+    security: {risk: "medium", notes: "Sends seed material to LLM and memory providers. AGPL-3.0 copyleft applies if distributed or served. Prediction output has no accuracy evidence in the repo, per one critical review."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "claude-code-best-practice"
+    user_label: "claude-code-best-practice"
+    name: "claude-code-best-practice"
+    kind: "docs"
+    category: "meta"
+    source_url: "https://github.com/shanraisshan/claude-code-best-practice"
+    source_verified: true
+    uncertainty: "Repo verified via API. Reference documentation rather than an installable skill."
+    candidates: []
+    description: "Community reference of Claude Code practices, from vibe coding to agentic engineering, with examples and templates."
+    license: "MIT"
+    maintenance: {last_commit: "2026-11-11", stars: 68970, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "none", command: null, notes: "Read-only reference."}
+    dependencies: []
+    permissions: []
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "low", notes: "Documentation only. Copy any example config with care."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "public-apis"
+    user_label: "public-apis"
+    name: "public-apis"
+    kind: "collection"
+    category: "development"
+    source_url: "https://github.com/public-apis/public-apis"
+    source_verified: true
+    uncertainty: "Repo verified via API. It is a list of free APIs, not a skill or MCP server."
+    candidates: []
+    description: "Community-curated list of free public APIs grouped by category."
+    license: "MIT"
+    maintenance: {last_commit: "2026-11-11", stars: 498167, archived: false}
+    default_branch: "master"
+    pinned_ref: null
+    compat: {claude_code: "n/a", codex: "n/a", mcp: "n/a"}
+    install_method: {type: "none", command: null, notes: "Reference list."}
+    dependencies: []
+    permissions: []
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "low", notes: "Listed APIs are third-party services; check each one's terms before use."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "ponytail"
+    user_label: "ponytail"
+    name: "ponytail"
+    kind: "agent_skill"
+    category: "development"
+    source_url: "https://github.com/DietrichGebert/ponytail"
+    source_verified: true
+    uncertainty: "Repo verified via API (last push 2026-10-29). Star and install counts quoted by third-party sites are inconsistent. Benchmark claims are self-reported. Companion skills ponytail-help, ponytail-review and ponytail-debt exist per listings."
+    candidates: ["https://github.com/Adek06/ponytail"]
+    description: "Skill that pushes the coding agent to write less code by reusing existing code, the standard library and native platform features first."
+    license: "MIT"
+    maintenance: {last_commit: "2026-10-29", stars: 188988, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "skills_cli", command: "npx skills add DietrichGebert/ponytail --skill ponytail", notes: "Command from third-party listings. Plugin route per listings: /plugin marketplace add DietrichGebert/ponytail."}
+    dependencies: []
+    permissions: []
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "low", notes: "Instruction-only skill."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "claudex-loop"
+    user_label: "claudex loop"
+    name: "claudex loop (not found)"
+    kind: "agent_skill"
+    category: "meta"
+    source_url: null
+    source_verified: false
+    uncertainty: "No skill named claudex was found. Nearby loop skills exist: lhaig/loop (github.com/lhaig/loop), and codex-claude-loop listings (bear2u/my-skills). The user should confirm the intended name or URL."
+    candidates: ["https://github.com/lhaig/loop"]
+    description: "Requested loop skill; the intended target was not identified."
+    license: "unknown"
+    maintenance: {last_commit: "unknown", stars: "unknown", archived: "unknown"}
+    default_branch: null
+    pinned_ref: null
+    compat: {claude_code: "unknown", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "none", command: null, notes: "Needs a repo URL from the user."}
+    dependencies: []
+    permissions: []
+    requires_credentials: false
+    paid_service: "unknown"
+    security: {risk: "unknown", notes: "Loop skills run repeated agent sessions; set limits before use."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "superpowers"
+    user_label: "superpowers"
+    name: "Superpowers"
+    kind: "agent_skill"
+    category: "development"
+    source_url: "https://github.com/obra/superpowers"
+    source_verified: true
+    uncertainty: "Repo verified via API; latest commit fetched. Install commands quoted verbatim from README via WebFetch. Two marketplaces are documented."
+    candidates: []
+    description: "Agentic skills framework and software-development methodology (brainstorming, planning, test-driven and review workflows) for coding agents."
+    license: "MIT"
+    maintenance: {last_commit: "2026-11-03", stars: 316157, archived: false}
+    default_branch: "main"
+    pinned_ref: "22f0b463e7a5e579904dd6211a520321035526f7"
+    compat: {claude_code: "yes", codex: "partial", mcp: "n/a"}
+    install_method: {type: "claude_plugin", command: "/plugin install superpowers@claude-plugins-official", notes: "README also documents /plugin marketplace add obra/superpowers-marketplace followed by /plugin install superpowers@superpowers-marketplace."}
+    dependencies: []
+    permissions: ["filesystem_write (project files via agent)"]
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "low", notes: "Instruction and workflow skills. The agent runs shell and edit actions under the normal permission prompts."}
+    priority_candidate: true
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "anthropics-skills"
+    user_label: "anthropics/skills"
+    name: "anthropics/skills"
+    kind: "collection"
+    category: "meta"
+    source_url: "https://github.com/anthropics/skills"
+    source_verified: true
+    uncertainty: "Repo verified via API; latest commit fetched. Licences differ per skill (a recent commit moved the Office skills to Apache 2.0), so the repo-level licence is recorded as unknown. Plugin command not verified against the README."
+    candidates: []
+    description: "Anthropic's public repository of example and reference Agent Skills."
+    license: "unknown"
+    maintenance: {last_commit: "2026-11-06", stars: 192985, archived: false}
+    default_branch: "main"
+    pinned_ref: "2c5958ecac7cee2b583967a2c4981d0f4a75c579"
+    compat: {claude_code: "yes", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "claude_plugin", command: "/plugin marketplace add anthropics/skills", notes: "Plugin route not verified against the README in this run. Per-skill install with npx skills add anthropics/skills --skill <name> is also possible."}
+    dependencies: []
+    permissions: ["filesystem_write (for document skills)"]
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "low", notes: "Reference skills, some of which ship scripts. Review scripts before running."}
+    priority_candidate: true
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "awesome-skills"
+    user_label: "awesome skills"
+    name: "awesome skills (ambiguous)"
+    kind: "collection"
+    category: "meta"
+    source_url: null
+    source_verified: false
+    uncertainty: "Ambiguous: two large awesome lists exist and both repos were verified via API. Neither is confirmed as the intended one."
+    candidates: ["https://github.com/VoltAgent/awesome-agent-skills", "https://github.com/ComposioHQ/awesome-claude-skills"]
+    description: "Curated lists of agent skills. The intended list is unclear."
+    license: "unknown"
+    maintenance: {last_commit: "unknown", stars: "unknown", archived: "unknown"}
+    default_branch: null
+    pinned_ref: null
+    compat: {claude_code: "n/a", codex: "n/a", mcp: "n/a"}
+    install_method: {type: "none", command: null, notes: "Reference lists."}
+    dependencies: []
+    permissions: []
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "unknown", notes: "Listed skills are unvetted. Review each before installation."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "mattpocock-skills"
+    user_label: "https://github.com/mattpocock/skills"
+    name: "mattpocock/skills"
+    kind: "collection"
+    category: "development"
+    source_url: "https://github.com/mattpocock/skills"
+    source_verified: true
+    uncertainty: "Repo verified via API; latest commit fetched. Install command from the README was not verified in this run."
+    candidates: []
+    description: "Skills for real engineers, taken from the author's .agents directory, as described in the repo summary."
+    license: "MIT"
+    maintenance: {last_commit: "2026-10-31", stars: 321793, archived: false}
+    default_branch: "main"
+    pinned_ref: "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+    compat: {claude_code: "yes", codex: "partial", mcp: "n/a"}
+    install_method: {type: "skills_cli", command: "npx skills add mattpocock/skills", notes: "Command not verified against the README; use the skills CLI form on this machine."}
+    dependencies: []
+    permissions: []
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "low", notes: "Instruction skills. Review any script before use."}
+    priority_candidate: true
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
+
+  - id: "claude-how-to"
+    user_label: "claude how to"
+    name: "claude-howto"
+    kind: "docs"
+    category: "meta"
+    source_url: "https://github.com/luongnv89/claude-howto"
+    source_verified: true
+    uncertainty: "Repo verified via API. Visual, example-driven guide with copy-paste templates, not an installable skill."
+    candidates: []
+    description: "Visual, example-driven guide to Claude Code from basic concepts to advanced agents, with copy-paste templates."
+    license: "MIT"
+    maintenance: {last_commit: "2026-11-03", stars: 46965, archived: false}
+    default_branch: "main"
+    pinned_ref: null
+    compat: {claude_code: "yes", codex: "unknown", mcp: "n/a"}
+    install_method: {type: "none", command: null, notes: "Reference guide."}
+    dependencies: []
+    permissions: []
+    requires_credentials: false
+    paid_service: "no"
+    security: {risk: "low", notes: "Documentation and templates. Review templates before copying into a project."}
+    priority_candidate: false
+    initial_state: "CATALOGUED_ON_DEMAND"
+    duplicates_of: null
